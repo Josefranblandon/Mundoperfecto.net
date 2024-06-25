@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Propuesta</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            position: relative;
+            display: inline-block;
+        }
+        .container img {
+            width: 100%;
+            max-width: 400px; /* Imagen más pequeña */
+        }
+        .button {
+            position: absolute;
+            padding: 10px 20px;
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .button-yes {
+            background-color: green;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .button-no {
+            background-color: red;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 300px;
+            text-align: center;
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .modal-button {
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .accept {
+            background-color: green;
+            color: white;
+        }
+        .cancel {
+            background-color: red;
+            color: white;
+        }
+        .privacy-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            z-index: 1000;
+        }
+        .privacy-banner a {
+            color: #ccc;
+        }
+    </style>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6804264188639114" crossorigin="anonymous"></script>
+    <script async custom-element="amp-auto-ads" src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js"></script>
+    <script async src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
+</head>
+<body>
+    <amp-auto-ads type="adsense" data-ad-client="ca-pub-6804264188639114"></amp-auto-ads>
+
+    <!-- Política de Privacidad -->
+    <div class="privacy-banner">
+        Esta página utiliza cookies para ofrecerte la mejor experiencia. <a href="/politica-de-privacidad">Política de Privacidad</a>.
+    </div>
+
+    <div class="container">
+        <img src="img.png" alt="Propuesta">
+        <button class="button button-yes" id="button-yes">Sí</button>
+        <button class="button button-no" id="button-no">No</button>
+    </div>
+
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="close-modal">&times;</span>
+            <p>¿Estás segura de ser mi novia?</p>
+            <button class="modal-button accept" id="accept-button">Aceptar</button>
+            <button class="modal-button cancel" id="cancel-button">Cancelar</button>
+        </div>
+    </div>
+
+    <script>
+        const buttonNo = document.getElementById('button-no');
+        const buttonYes = document.getElementById('button-yes');
+        const modal = document.getElementById('myModal');
+        const closeModal = document.getElementById('close-modal');
+        const cancelButton = document.getElementById('cancel-button');
+        const acceptButton = document.getElementById('accept-button');
+
+        buttonNo.addEventListener('mouseover', function() {
+            const container = buttonNo.parentElement;
+            const maxX = container.clientWidth - buttonNo.clientWidth;
+            const maxY = container.clientHeight - buttonNo.clientHeight;
+
+            const randomX = Math.floor(Math.random() * maxX);
+            const randomY = Math.floor(Math.random() * maxY);
+
+            buttonNo.style.left = `${randomX}px`;
+            buttonNo.style.top = `${randomY}px`;
+        });
+
+        buttonYes.addEventListener('click', function() {
+            modal.style.display = 'flex';
+        });
+
+        closeModal.addEventListener('click', function() {
+            modal.style.display = 'none';
+        });
+
+        cancelButton.addEventListener('click', function() {
+            modal.style.display = 'none';
+        });
+
+        acceptButton.addEventListener('click', function() {
+            window.location.href = 'Respuesta.html';
+        });
+
+        window.addEventListener('click', function(event) {
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        });
+
+        function init() {
+            const container = document.querySelector('.container');
+            container.style.position = 'relative';
+            buttonNo.style.position = 'absolute';
+            buttonNo.style.left = '50%';
+            buttonNo.style.top = '50%';
+            buttonNo.style.transform = 'translate(-50%, -50%)';
+        }
+
+        init();
+    </script>
+</body>
+</html>
