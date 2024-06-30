@@ -94,14 +94,31 @@
             bottom: 0;
             left: 0;
             width: 100%;
-            background-color: #333;
+            background-color: #222;
             color: white;
-            padding: 10px;
+            padding: 15px;
             text-align: center;
+            font-size: 14px;
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.3);
             z-index: 1000;
         }
         .privacy-banner a {
-            color: #ccc;
+            color: #4caf50;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .privacy-banner a:hover {
+            text-decoration: underline;
+        }
+        .privacy-banner button {
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 14px;
+            margin-left: 10px;
+            border-radius: 5px;
         }
     </style>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6804264188639114" crossorigin="anonymous"></script>
@@ -112,8 +129,9 @@
     <amp-auto-ads type="adsense" data-ad-client="ca-pub-6804264188639114"></amp-auto-ads>
 
     <!-- Política de Privacidad -->
-    <div class="privacy-banner">
-        Esta página utiliza cookies para ofrecerte la mejor experiencia. <a href="/politica-de-privacidad">Política de Privacidad</a>.
+    <div class="privacy-banner" id="privacy-banner">
+        Esta página utiliza cookies para ofrecerte la mejor experiencia. Al usar este sitio, aceptas nuestra <a href="https://policies.google.com/privacy" target="_blank">Política de Privacidad</a>.
+        <button id="accept-cookies">Aceptar</button>
     </div>
 
     <div class="container">
@@ -138,6 +156,8 @@
         const closeModal = document.getElementById('close-modal');
         const cancelButton = document.getElementById('cancel-button');
         const acceptButton = document.getElementById('accept-button');
+        const privacyBanner = document.getElementById('privacy-banner');
+        const acceptCookies = document.getElementById('accept-cookies');
 
         buttonNo.addEventListener('mouseover', function() {
             const container = buttonNo.parentElement;
@@ -183,6 +203,11 @@
         }
 
         init();
+
+        acceptCookies.addEventListener('click', function() {
+            privacyBanner.style.display = 'none';
+            // Aquí puedes añadir la lógica para almacenar el consentimiento de cookies
+        });
     </script>
 </body>
-</html>
+        </html>
